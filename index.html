@@ -29,25 +29,25 @@
             color: var(--text-light);
             overflow-x: hidden;
             line-height: 1.6;
+            position: relative;
         }
 
-        .bg-effect {
+        /* Fixed Background Image */
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: url('images/Site-Background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.15;
             z-index: 0;
-            opacity: 0.04;
-            background: 
-                radial-gradient(circle at 20% 50%, var(--accent-electric) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, var(--accent-magenta) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.04; }
-            50% { opacity: 0.08; }
+            pointer-events: none;
         }
 
         .grain {
@@ -239,7 +239,8 @@
         }
 
         .guitar-card {
-            background: var(--bg-card);
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.2);
             overflow: hidden;
             transition: all 0.4s ease;
@@ -295,7 +296,8 @@
         }
 
         .builder-options {
-            background: var(--bg-card);
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
             padding: 3rem;
             border: 1px solid var(--border-glow);
         }
@@ -324,6 +326,13 @@
             font-family: 'Barlow', sans-serif;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        /* Make dropdown options readable */
+        select option {
+            background: rgba(26, 26, 26, 0.98);
+            color: var(--text-light);
+            padding: 0.5rem;
         }
 
         select:hover, select:focus {
@@ -367,6 +376,7 @@
             border-color: var(--accent-gold);
         }
 
+        /* Original Color Options */
         .color-sunburst { background: linear-gradient(135deg, #8B4513, #D2691E, #F4A460); }
         .color-teal { background: linear-gradient(135deg, #008B8B, #20B2AA); }
         .color-emerald { background: linear-gradient(135deg, #0B5345, #16A085, #45B39D); }
@@ -386,7 +396,8 @@
         .builder-preview {
             position: sticky;
             top: 2rem;
-            background: var(--bg-card);
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
             padding: 2rem;
             border: 1px solid var(--border-glow);
             text-align: center;
@@ -524,22 +535,21 @@
     </style>
 </head>
 <body>
-    <div class="bg-effect"></div>
     <div class="grain"></div>
 
     <header>
         <div class="logo">KEV KUSTOMS</div>
         <nav>
             <a href="#gallery">Gallery</a>
-            <a href="#builder">Kustom Builder</a>
+            <a href="#builder">Custom Builder</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <section class="hero">
         <div class="hero-content">
-            <h1>KUSTOM GUITAR WOOD WORK<br>WITH CRYSTAL INLAYS</h1>
-            <p>Handcrafted masterpieces that blend artistry with tone. Each guitar is a unique work of art, inlaid with your choice of crystals, resin, and customized wood workings to your exact specifications.</p>
+            <h1>KUSTOM GUITAR<br>WOODWORKING</h1>
+            <p>Handcrafted masterpieces that blend artistry with tone. Each guitar is a unique work of art, inlaid with your choice of crystals and customized to your exact specifications.</p>
             <a href="#builder" class="cta-button">Build Your Guitar</a>
         </div>
     </section>
@@ -547,6 +557,33 @@
     <section id="gallery" class="gallery">
         <h2 class="section-title">Recent Creations</h2>
         <div class="gallery-grid">
+            <div class="guitar-card">
+                <img src="images/First-Guitar.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/5da6cedf-9449-40eb-b1e4-656fc793543d.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/8c0177a6-ccdb-4b66-8e81-06ba68c32fcc.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/c09d1406-e67f-4092-a9c4-42d211210ae9.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/c75c4966-d1d6-4336-8a59-c47944306e41.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/generated-image__17_.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/generated-image__22_.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/generated-image__23_.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="images/generated-image__29_.png" alt="Custom Guitar" class="guitar-image">
+            </div>
             <div class="guitar-card">
                 <img src="images/guitar-0.png" alt="Custom Guitar" class="guitar-image">
             </div>
@@ -556,38 +593,11 @@
             <div class="guitar-card">
                 <img src="images/guitar-2.png" alt="Custom Guitar" class="guitar-image">
             </div>
-            <div class="guitar-card">
-                <img src="images/guitar-3.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-4.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-5.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-6.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-7.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-8.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-9.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-10.png" alt="Custom Guitar" class="guitar-image">
-            </div>
-            <div class="guitar-card">
-                <img src="images/guitar-11.png" alt="Custom Guitar" class="guitar-image">
-            </div>
         </div>
     </section>
 
     <section id="builder" class="builder">
-        <h2 class="section-title">Build Your Kustom Guitar</h2>
+        <h2 class="section-title">Build Your Custom Guitar</h2>
         <div class="builder-container">
             <div class="builder-options">
                 <div class="option-group">
@@ -600,6 +610,20 @@
                         <option value="flying-v">Flying V</option>
                         <option value="explorer">Explorer</option>
                         <option value="custom">Custom Shape</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="wood-type">Body Wood Type</label>
+                    <select id="wood-type">
+                        <option value="walnut">Walnut</option>
+                        <option value="maple">Maple (+$100)</option>
+                        <option value="mahogany">Mahogany (+$150)</option>
+                        <option value="rosewood">Rosewood (+$200)</option>
+                        <option value="ebony">Ebony (+$250)</option>
+                        <option value="ash">Ash (+$100)</option>
+                        <option value="cherry">Cherry (+$150)</option>
+                        <option value="zebrawood">Zebrawood (+$300)</option>
                     </select>
                 </div>
 
@@ -622,6 +646,7 @@
                     <select id="pickups">
                         <option value="hh">Dual Humbucker (HH)</option>
                         <option value="sss">Triple Single-Coil (SSS)</option>
+                        <option value="ssh">SSH Configuration</option>
                         <option value="hsh">HSH Configuration</option>
                         <option value="p90">P90 Pickups</option>
                     </select>
@@ -681,6 +706,10 @@
                         <span class="detail-value" id="preview-body">Stratocaster Style</span>
                     </div>
                     <div class="detail-item">
+                        <span class="detail-label">Body Wood:</span>
+                        <span class="detail-value" id="preview-wood">Walnut</span>
+                    </div>
+                    <div class="detail-item">
                         <span class="detail-label">Finish:</span>
                         <span class="detail-value" id="preview-color">Sunburst</span>
                     </div>
@@ -713,11 +742,11 @@
 
     <footer id="contact">
         <p>© 2026 Kev Kustoms. Handcrafted in the USA.</p>
-        <p>Email: info@kevkustoms.com | Phone: (754) 347-4567</p>
+        <p>Email: info@kevkustoms.com | Phone: (555) 123-4567</p>
         <div class="social-links">
-            <a href="#">Instagram</kevkustoms>
-            <a href="#">Facebook</kevkustoms>
-            <a href="#">YouTube</kevkustoms>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
         </div>
     </footer>
 
@@ -725,6 +754,8 @@
         let basePrice = 3000;
         let selectedOptions = {
             bodyStyle: 'Stratocaster Style',
+            woodType: 'Walnut',
+            woodPrice: 0,
             color: 'Sunburst',
             colorPrice: 0,
             pickups: 'Dual Humbucker (HH)',
@@ -741,6 +772,24 @@
         document.getElementById('body-style').addEventListener('change', function(e) {
             selectedOptions.bodyStyle = e.target.options[e.target.selectedIndex].text;
             document.getElementById('preview-body').textContent = selectedOptions.bodyStyle;
+        });
+
+        document.getElementById('wood-type').addEventListener('change', function(e) {
+            const option = e.target.options[e.target.selectedIndex];
+            selectedOptions.woodType = option.text.replace(/\s*\(\+\$\d+\)/, '');
+            const prices = {
+                'walnut': 0,
+                'maple': 100,
+                'mahogany': 150,
+                'rosewood': 200,
+                'ebony': 250,
+                'ash': 100,
+                'cherry': 150,
+                'zebrawood': 300
+            };
+            selectedOptions.woodPrice = prices[option.value] || 0;
+            document.getElementById('preview-wood').textContent = selectedOptions.woodType;
+            updatePrice();
         });
 
         document.querySelectorAll('.color-option').forEach(option => {
@@ -796,6 +845,7 @@
 
         function updatePrice() {
             const total = basePrice + 
+                         selectedOptions.woodPrice +
                          selectedOptions.colorPrice + 
                          selectedOptions.neckPrice + 
                          selectedOptions.crystalPrice + 
@@ -810,6 +860,7 @@ Custom Guitar Specifications:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Body Style: ${selectedOptions.bodyStyle}
+Body Wood: ${selectedOptions.woodType}
 Finish: ${selectedOptions.color}
 Pickups: ${selectedOptions.pickups}
 Neck Wood: ${selectedOptions.neckWood}
