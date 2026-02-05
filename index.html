@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kev Kustoms | Kustom Guitar Woodworking with Crystal Inlays</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Righteous&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #1a1a1a;
+            --accent-gold: #d4af37;
+            --accent-electric: #00ffff;
+            --accent-magenta: #ff00ff;
+            --text-light: #f5f5f5;
+            --text-muted: #999;
+            --border-glow: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--bg-dark);
+            background-image: url('./images/Site-Background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.85);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                background-attachment: scroll;
+                background-size: contain;
+                background-position: top center;
+            }
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-glow);
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--accent-gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Righteous', sans-serif;
+            font-size: 6rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--accent-gold), var(--accent-electric));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--accent-gold), #b8902a);
+            color: var(--bg-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 0;
+            border: 2px solid var(--accent-gold);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .gallery {
+            position: relative;
+            z-index: 2;
+            padding: 6rem 4rem;
+        }
+
+        .section-title {
+            font-family: 'Righteous', sans-serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, var(--accent-gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .guitar-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .guitar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 255, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .guitar-card:hover::before {
+            opacity: 1;
+        }
+
+        .guitar-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .guitar-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .builder {
+            position: relative;
+            z-index: 2;
+            padding: 6rem 4rem;
+            background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.03), transparent);
+        }
+
+        .builder-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .builder-options {
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border: 1px solid var(--border-glow);
+        }
+
+        .option-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .option-group label {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--text-light);
+            font-size: 1rem;
+            font-family: 'Barlow', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Make dropdown options readable */
+        select option {
+            background: rgba(26, 26, 26, 0.98);
+            color: var(--text-light);
+            padding: 0.5rem;
+        }
+
+        select:hover, select:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        .color-grid, .crystal-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .color-option, .crystal-option {
+            aspect-ratio: 1;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .color-option {
+            border-radius: 50%;
+        }
+
+        .color-option.selected, .crystal-option.selected {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            transform: scale(1.1);
+        }
+
+        .color-option:hover, .crystal-option:hover {
+            transform: scale(1.15);
+            border-color: var(--accent-gold);
+        }
+
+        /* Original Color Options */
+        .color-sunburst { background: linear-gradient(135deg, #8B4513, #D2691E, #F4A460); }
+        .color-teal { background: linear-gradient(135deg, #008B8B, #20B2AA); }
+        .color-emerald { background: linear-gradient(135deg, #0B5345, #16A085, #45B39D); }
+        .color-black { background: linear-gradient(135deg, #1a1a1a, #333); }
+        .color-red { background: linear-gradient(135deg, #8B0000, #DC143C, #FF6347); }
+        .color-silver { background: linear-gradient(135deg, #708090, #C0C0C0, #DCDCDC); }
+        .color-honey { background: linear-gradient(135deg, #CD853F, #DAA520, #F0E68C); }
+        .color-purple { background: linear-gradient(135deg, #4B0082, #8B008B, #9370DB); }
+
+        .crystal-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .builder-preview {
+            position: sticky;
+            top: 2rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border: 1px solid var(--border-glow);
+            text-align: center;
+        }
+
+        .preview-title {
+            font-family: 'Righteous', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .preview-details {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .detail-label {
+            color: var(--text-muted);
+        }
+
+        .detail-value {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .price {
+            font-family: 'Righteous', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin: 2rem 0;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-gold), #b8902a);
+            color: var(--bg-dark);
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 4rem;
+            text-align: center;
+            border-top: 1px solid var(--border-glow);
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .social-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 1024px) {
+            .builder-container {
+                grid-template-columns: 1fr;
+            }
+
+            .builder-preview {
+                position: static;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem 2rem;
+            }
+
+            nav {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+                line-height: 1.2;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .gallery {
+                padding: 4rem 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .builder {
+                padding: 4rem 2rem;
+            }
+            
+            .builder-options {
+                padding: 2rem;
+            }
+
+            .color-grid, .crystal-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            footer {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .color-grid, .crystal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <header>
+        <div class="logo">KEV KUSTOMS</div>
+        <nav>
+            <a href="#gallery">Gallery</a>
+            <a href="#builder">Custom Builder</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>KUSTOM GUITAR<br>WOODWORKING</h1>
+            <p>Handcrafted masterpieces that blend artistry with tone. Each guitar is a unique work of art, inlaid with your choice of crystals and customized to your exact specifications.</p>
+            <a href="#builder" class="cta-button">Build Your Guitar</a>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Recent Creations</h2>
+        <div class="gallery-grid">
+            <div class="guitar-card">
+                <img src="./images/First-Guitar.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/5da6cedf-9449-40eb-b1e4-656fc793543d.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/8c0177a6-ccdb-4b66-8e81-06ba68c32fcc.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/c09d1406-e67f-4092-a9c4-42d211210ae9.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/c75c4966-d1d6-4336-8a59-c47944306e41.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/generated-image (17).png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/generated-image (22).png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/generated-image (23).png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/generated-image (29).png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-0.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-1.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-2.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-3.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-4.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-5.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-6.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-8.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+            <div class="guitar-card">
+                <img src="./images/guitar-11.png" alt="Custom Guitar" class="guitar-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="builder" class="builder">
+        <h2 class="section-title">Build Your Custom Guitar</h2>
+        <div class="builder-container">
+            <div class="builder-options">
+                <div class="option-group">
+                    <label for="body-style">Body Style</label>
+                    <select id="body-style">
+                        <option value="stratocaster">Stratocaster Style</option>
+                        <option value="telecaster">Telecaster Style</option>
+                        <option value="sg">SG Style</option>
+                        <option value="les-paul">Les Paul Style</option>
+                        <option value="flying-v">Flying V</option>
+                        <option value="explorer">Explorer</option>
+                        <option value="custom">Custom Shape</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="wood-type">Body Wood Type</label>
+                    <select id="wood-type">
+                        <option value="walnut">Walnut</option>
+                        <option value="maple">Maple (+$100)</option>
+                        <option value="mahogany">Mahogany (+$150)</option>
+                        <option value="rosewood">Rosewood (+$200)</option>
+                        <option value="ebony">Ebony (+$250)</option>
+                        <option value="ash">Ash (+$100)</option>
+                        <option value="cherry">Cherry (+$150)</option>
+                        <option value="zebrawood">Zebrawood (+$300)</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Body Color / Finish</label>
+                    <div class="color-grid">
+                        <div class="color-option color-sunburst selected" data-color="Sunburst" data-price="0"></div>
+                        <div class="color-option color-teal" data-color="Teal Green" data-price="150"></div>
+                        <div class="color-option color-emerald" data-color="Emerald" data-price="150"></div>
+                        <div class="color-option color-black" data-color="Black Gloss" data-price="0"></div>
+                        <div class="color-option color-red" data-color="Cherry Red" data-price="100"></div>
+                        <div class="color-option color-silver" data-color="Metallic Silver" data-price="200"></div>
+                        <div class="color-option color-honey" data-color="Honey Burst" data-price="100"></div>
+                        <div class="color-option color-purple" data-color="Purple Metallic" data-price="150"></div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="pickups">Pickup Configuration</label>
+                    <select id="pickups">
+                        <option value="hh">Dual Humbucker (HH)</option>
+                        <option value="sss">Triple Single-Coil (SSS)</option>
+                        <option value="ssh">SSH Configuration</option>
+                        <option value="hsh">HSH Configuration</option>
+                        <option value="p90">P90 Pickups</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="neck-wood">Neck Wood</label>
+                    <select id="neck-wood">
+                        <option value="maple">Maple</option>
+                        <option value="mahogany">Mahogany</option>
+                        <option value="rosewood">Rosewood</option>
+                        <option value="ebony">Ebony (+$200)</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label>Crystal Inlays</label>
+                    <div class="crystal-grid">
+                        <div class="crystal-option selected" data-crystal="Clear Quartz" data-price="300">Clear Quartz</div>
+                        <div class="crystal-option" data-crystal="Amethyst" data-price="400">Amethyst</div>
+                        <div class="crystal-option" data-crystal="Rose Quartz" data-price="350">Rose Quartz</div>
+                        <div class="crystal-option" data-crystal="Citrine" data-price="350">Citrine</div>
+                        <div class="crystal-option" data-crystal="Black Obsidian" data-price="300">Black Obsidian</div>
+                        <div class="crystal-option" data-crystal="Turquoise" data-price="500">Turquoise</div>
+                        <div class="crystal-option" data-crystal="Tiger's Eye" data-price="400">Tiger's Eye</div>
+                        <div class="crystal-option" data-crystal="Lapis Lazuli" data-price="450">Lapis Lazuli</div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="inlay-pattern">Inlay Pattern</label>
+                    <select id="inlay-pattern">
+                        <option value="scattered">Scattered Accent</option>
+                        <option value="border">Border Design</option>
+                        <option value="custom-art">Custom Artwork (+$500)</option>
+                        <option value="geometric">Geometric Pattern</option>
+                        <option value="floral">Floral Design</option>
+                    </select>
+                </div>
+
+                <div class="option-group">
+                    <label for="hardware">Hardware Finish</label>
+                    <select id="hardware">
+                        <option value="chrome">Chrome</option>
+                        <option value="gold">Gold (+$150)</option>
+                        <option value="black">Black</option>
+                        <option value="nickel">Nickel</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="builder-preview">
+                <h3 class="preview-title">Your Custom Guitar</h3>
+                <div class="preview-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Body Style:</span>
+                        <span class="detail-value" id="preview-body">Stratocaster Style</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Body Wood:</span>
+                        <span class="detail-value" id="preview-wood">Walnut</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Finish:</span>
+                        <span class="detail-value" id="preview-color">Sunburst</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Pickups:</span>
+                        <span class="detail-value" id="preview-pickups">Dual Humbucker</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Neck Wood:</span>
+                        <span class="detail-value" id="preview-neck">Maple</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Crystal Type:</span>
+                        <span class="detail-value" id="preview-crystal">Clear Quartz</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Inlay Pattern:</span>
+                        <span class="detail-value" id="preview-pattern">Scattered Accent</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Hardware:</span>
+                        <span class="detail-value" id="preview-hardware">Chrome</span>
+                    </div>
+                </div>
+                <div class="price" id="total-price">$3,500</div>
+                <button class="submit-button" onclick="submitOrder()">Request Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>© 2026 Kev Kustoms. Handcrafted in the USA.</p>
+        <p>Email: info@kevkustoms.com | Phone: (555) 123-4567</p>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
+        </div>
+    </footer>
+
+    <script>
+        let basePrice = 3000;
+        let selectedOptions = {
+            bodyStyle: 'Stratocaster Style',
+            woodType: 'Walnut',
+            woodPrice: 0,
+            color: 'Sunburst',
+            colorPrice: 0,
+            pickups: 'Dual Humbucker (HH)',
+            neckWood: 'Maple',
+            neckPrice: 0,
+            crystal: 'Clear Quartz',
+            crystalPrice: 300,
+            inlayPattern: 'Scattered Accent',
+            patternPrice: 0,
+            hardware: 'Chrome',
+            hardwarePrice: 0
+        };
+
+        document.getElementById('body-style').addEventListener('change', function(e) {
+            selectedOptions.bodyStyle = e.target.options[e.target.selectedIndex].text;
+            document.getElementById('preview-body').textContent = selectedOptions.bodyStyle;
+        });
+
+        document.getElementById('wood-type').addEventListener('change', function(e) {
+            const option = e.target.options[e.target.selectedIndex];
+            selectedOptions.woodType = option.text.replace(/\s*\(\+\$\d+\)/, '');
+            const prices = {
+                'walnut': 0,
+                'maple': 100,
+                'mahogany': 150,
+                'rosewood': 200,
+                'ebony': 250,
+                'ash': 100,
+                'cherry': 150,
+                'zebrawood': 300
+            };
+            selectedOptions.woodPrice = prices[option.value] || 0;
+            document.getElementById('preview-wood').textContent = selectedOptions.woodType;
+            updatePrice();
+        });
+
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOptions.color = this.dataset.color;
+                selectedOptions.colorPrice = parseInt(this.dataset.price);
+                document.getElementById('preview-color').textContent = selectedOptions.color;
+                updatePrice();
+            });
+        });
+
+        document.getElementById('pickups').addEventListener('change', function(e) {
+            selectedOptions.pickups = e.target.options[e.target.selectedIndex].text;
+            document.getElementById('preview-pickups').textContent = selectedOptions.pickups;
+        });
+
+        document.getElementById('neck-wood').addEventListener('change', function(e) {
+            const option = e.target.options[e.target.selectedIndex];
+            selectedOptions.neckWood = option.text.replace(' (+$200)', '');
+            selectedOptions.neckPrice = option.value === 'ebony' ? 200 : 0;
+            document.getElementById('preview-neck').textContent = selectedOptions.neckWood;
+            updatePrice();
+        });
+
+        document.querySelectorAll('.crystal-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.crystal-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOptions.crystal = this.dataset.crystal;
+                selectedOptions.crystalPrice = parseInt(this.dataset.price);
+                document.getElementById('preview-crystal').textContent = selectedOptions.crystal;
+                updatePrice();
+            });
+        });
+
+        document.getElementById('inlay-pattern').addEventListener('change', function(e) {
+            const option = e.target.options[e.target.selectedIndex];
+            selectedOptions.inlayPattern = option.text.replace(' (+$500)', '');
+            selectedOptions.patternPrice = option.value === 'custom-art' ? 500 : 0;
+            document.getElementById('preview-pattern').textContent = selectedOptions.inlayPattern;
+            updatePrice();
+        });
+
+        document.getElementById('hardware').addEventListener('change', function(e) {
+            const option = e.target.options[e.target.selectedIndex];
+            selectedOptions.hardware = option.text.replace(' (+$150)', '');
+            selectedOptions.hardwarePrice = option.value === 'gold' ? 150 : 0;
+            document.getElementById('preview-hardware').textContent = selectedOptions.hardware;
+            updatePrice();
+        });
+
+        function updatePrice() {
+            const total = basePrice + 
+                         selectedOptions.woodPrice +
+                         selectedOptions.colorPrice + 
+                         selectedOptions.neckPrice + 
+                         selectedOptions.crystalPrice + 
+                         selectedOptions.patternPrice + 
+                         selectedOptions.hardwarePrice;
+            document.getElementById('total-price').textContent = '$' + total.toLocaleString();
+        }
+
+        function submitOrder() {
+            const specs = `
+Custom Guitar Specifications:
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Body Style: ${selectedOptions.bodyStyle}
+Body Wood: ${selectedOptions.woodType}
+Finish: ${selectedOptions.color}
+Pickups: ${selectedOptions.pickups}
+Neck Wood: ${selectedOptions.neckWood}
+Crystal Inlays: ${selectedOptions.crystal}
+Inlay Pattern: ${selectedOptions.inlayPattern}
+Hardware: ${selectedOptions.hardware}
+
+Total: ${document.getElementById('total-price').textContent}
+            `;
+            
+            alert(specs + '\n\nThank you for your interest! A Kev Kustoms representative will contact you shortly to finalize your custom guitar order.');
+        }
+
+        updatePrice();
+    </script>
+</body>
+</html>
